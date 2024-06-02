@@ -2,7 +2,7 @@
 // MOST OF THE TIME YOU WILL NOT NEED THE OPENING <?PHP TAG
 //
 // Enqueue Highlight.js scripts and styles
-// v2.2
+// v2.5
 // Date: Sunday, June 02, 2024
 // Author: Ruhani Rabin
 //
@@ -45,11 +45,9 @@ function enqueue_highlight_js() {
 add_action('wp_enqueue_scripts', 'enqueue_highlight_js');
 
 // Filter standalone <code> tags within <p> and wrap them with <pre>
-// This should work automatically with <CODE> blocks
-//
 function filter_code_tags($content) {
     $pattern = '/<p>\s*<code>(.*?)<\/code>\s*<\/p>/i';
-    $replacement = '<pre><code>$1</code></pre>';
+    $replacement = '<div class="code-container"><pre><code>$1</code></pre></div>';
     $content = preg_replace($pattern, $replacement, $content);
     return $content;
 }
